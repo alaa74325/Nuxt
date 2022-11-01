@@ -6,7 +6,10 @@
                 <div class="row flex-sp">
                         <div class="col-lg-6 col-sm-12">
                             <div class="branch">
-                                <i class="fa-solid fa-plus "  role="button" @click="toggleshowp('inner-p1')"></i>
+                                <span role="button" @click="toggleshowp('inner-p1')">
+                                    <i class="fa-solid fa-plus " v-if="!showp" ></i>
+                                    <i class="fa-solid fa-minus " v-else></i>
+                                </span>
                                 <h3>Egypt, Mansoura</h3>
                                 <div ref="inner-p1" class="d-none" style="transition:all .8s linear">
                                     <p>
@@ -34,7 +37,10 @@
                                 </div>
                             </div>
                             <div class="branch">
-                                <i class="fa-solid fa-plus "  role="button" @click="toggleshowp('inner-p2')"></i>
+                                <span role="button" @click="toggleshowp('inner-p2')">
+                                    <i class="fa-solid fa-plus " v-if="!showp" ></i>
+                                    <i class="fa-solid fa-minus " v-else></i>
+                                </span>
                                 <h3>Egypt, Mansoura</h3>
                                 <div ref="inner-p2" class="d-none" style="transition:all .8s linear">
                                     <p>
@@ -61,8 +67,11 @@
                                     </p>
                                 </div>
                             </div>
-                            <div class="branch"> 
-                                    <i class="fa-solid fa-plus "  role="button" @click="toggleshowp('inner-p3')"></i>
+                            <div class="branch">
+                                    <span role="button" @click="toggleshowp('inner-p3')">
+                                        <i class="fa-solid fa-plus " v-if="!showp" ></i>
+                                        <i class="fa-solid fa-minus " v-else></i>
+                                    </span>
                                 <h3>Egypt, Mansoura</h3>
                                 <div ref="inner-p3" class="d-none" style="transition:height 2s linear">
                                     <p>
@@ -100,24 +109,19 @@
     </div>
 </template>
 <script>
-import { ref, reactive } from "vue";
 export default {
     data(){
         return{
+            showp:false,
         }
     },
-    methods:{   
-    },
-    setup(){
-        const active=ref<Boolean>(false);
-        const toggleshowp=(elementRef)=>{
+    methods:{ 
+        toggleshowp(elementRef){
             this.$refs[elementRef].classList.toggle('d-none');
-            //console.log(event.target.classList);
+            this.showp = !this.showp;
             console.log("hi")
-            //.toggle("fa-solid fa-minus,fa-solid fa-plus")
-        };
-        return{active,toggleshowp}
-    }
+        }
+    },
 }
 </script>
 <style lang="scss">
@@ -152,7 +156,7 @@ export default {
         padding: 10px ;
         width: 98%;
         position: relative;
-        >.svg-inline--fa{
+        >span{
             position: absolute;
             top: 20px;
             right: 15px;
@@ -163,6 +167,10 @@ export default {
             border-radius: 4px;
             transition: all 0.8s linear;
             cursor: pointer;
+            .svg-inline--fa{
+                color: inherit;
+                font-size: inherit;
+            }
         }
         h3{
             font-weight: 300;
