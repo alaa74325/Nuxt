@@ -10,7 +10,7 @@
                                     <i class="fa-solid fa-plus " v-if="!showp" ></i>
                                     <i class="fa-solid fa-minus " v-else></i>
                                 </span>
-                                <h3>Egypt, Mansoura</h3>
+                                <h3>Egypt, Mansoura</h3> 
                                 <div ref="inner-p1" class="d-none" style="transition:all .8s linear">
                                     <p>
                                         <span>
